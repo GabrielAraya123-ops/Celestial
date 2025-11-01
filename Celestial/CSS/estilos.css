@@ -1,0 +1,435 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --navy: #2C3E50;
+    --blue-gray: #8FA6B8;
+    --light-blue: #C5E8F0;
+    --lavender: #B8A5C3;
+    --white: #FFFFFF;
+}
+
+
+       body, .navbar, .nav-links, .logo span {
+    font-family: 'Playfair Display', serif; /* Elegante y profesional */
+}
+
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a252f 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+           nav, .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Cambia de center a flex-start */
+            gap: 50;
+            padding: 0 2rem;
+        }
+        .logo span {
+    font-size: 28px;                /* Tamaño más grande */
+    font-weight: 500;               /* Más destacado */
+    font-family: 'Playfair Display', serif; /* Mantener tipografía elegante */
+}
+
+
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre imagen y texto */
+}
+
+/* Imagen circular */
+.navbar-logo {
+    width: 60px;              /* Tamaño fijo */
+    height: 50px;
+    border-radius: 50%;       /* Hace la imagen circular */
+    object-fit: cover;        /* Ajusta la imagen dentro del círculo */
+    margin-left: -10px;       /* Mueve la imagen un poco a la izquierda */
+}
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+              padding-top: 11px; /* Mueve todo el bloque de links hacia abajo */
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+}
+        
+        .nav-links li a {
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.3s;
+}
+
+
+        .nav-links a:hover {
+            color: var(--light-blue);
+        }
+
+        /* --- Fondo hero con efecto cielo estrellado --- */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(to bottom, #0a0a2a, #1a1a4a);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* --- Capa 1: estrellas pequeñas (más cantidad, parpadeo rápido) --- */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background-image: radial-gradient(white 0.5px, transparent 1px);
+  background-size: 70px 70px;
+  opacity: 0.7;
+  animation: moveStars 200s linear infinite, twinkleFast 2s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* --- Capa 2: estrellas medianas (movimiento lento) --- */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.4;
+  animation: moveStarsReverse 300s linear infinite, twinkle 3.5s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* --- Capa 3 opcional (para más profundidad) --- */
+.hero::before,
+.hero::after {
+  pointer-events: none;
+}
+
+/* --- Movimiento de las estrellas --- */
+@keyframes moveStars {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(200px, 200px) rotate(360deg); }
+}
+
+@keyframes moveStarsReverse {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(-200px, -150px) rotate(-360deg); }
+}
+
+/* --- Parpadeos suaves --- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes twinkleFast {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* --- Contenido principal --- */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 2s ease-out;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  letter-spacing: 3px;
+  animation: glow 4s ease-in-out infinite alternate;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
+  animation-delay: 1s;
+}
+
+/* --- Botón con animación suave --- */
+.cta-button {
+  display: inline-block;
+  margin-top: 25px;
+  margin-inline: 10px; /* separa los botones si hay más de uno */
+  padding: 12px 35px;
+  background-color: #ffffff22;
+  border: 1px solid #fff;
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 2s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+
+.cta-button:hover {
+  background-color: #ffffff44;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+/* --- Keyframes generales --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #b5d0ff, 0 0 10px #9ec3ff; }
+  to { text-shadow: 0 0 25px #d3e3ff, 0 0 45px #c4dcff; }
+}
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--light-blue);
+        }
+
+        .cta-button {
+            background: var(--lavender);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(184, 165, 195, 0.4);
+        }
+
+        .features {
+            padding: 80px 2rem;
+            background: var(--white);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--navy);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, var(--light-blue) 0%, #e8f6fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .product-section {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 100%);
+        }
+
+        .product-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+       .product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-circle {
+    width: 400px;      /* Ajusta el tamaño */
+    height: 400px;     /* Ajusta el tamaño */
+    border-radius: 50%; /* Esto hace que sea circular */
+    object-fit: cover;  /* Mantiene proporción de la imagen */
+    border: 4px solid #f0f0f0; /* Opcional: borde decorativo */
+}
+
+        .product-circle::before {
+            content: 'Celestial';
+            color: var(--white);
+            font-size: 2.5rem;
+            font-style: italic;
+        }
+
+        .product-info h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .benefits {
+            padding: 80px 2rem;
+            background: var(--white);
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--navy);
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            background: var(--blue-gray);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .benefit-item:hover {
+            background: var(--navy);
+        }
+
+        .benefit-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--light-blue);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--lavender);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .product-circle {
+                width: 250px;
+                height: 250px;
+            }
+        }
